@@ -1,0 +1,30 @@
+<fieldset>
+    <legend>Add New Item to Inventory</legend>
+
+    <!-- Item Name -->
+    <label>Item Name</label>
+    <input type="text" name="name" />
+
+    <!-- Description -->
+    <label>Description</label>
+    <input type="text" name="description" />
+
+    <!-- Category -->
+    <label>Category</label>
+    <input type="text" name="category" />
+
+    <!-- Color -->
+    <label>Color</label>
+    <select name="color">
+        <!-- {% for color in colors  %}
+            <option value=" {{ color.name }}">{{ color.name }}</option>
+        {% endfor %} -->
+        <option value="Red">Red</option>
+        <option value="Orange">Orange</option>
+        <option value="Yellow">Yellow</option>
+        <option value="Green">Green</option>
+        <option value="Blue">Blue</option>
+        <option value="Purple">Purple</option>
+        <option value="Pink">Pink</option>
+    </select>
+</fieldset>

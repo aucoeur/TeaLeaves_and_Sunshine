@@ -15,8 +15,8 @@ def index():
     '''Show full inventory'''
     return render_template('index.html', inventory=inventory.find())
 
-@app.route('inventory/add')
-def inventory_add():
+@app.route('/inventory/add')
+def item_add():
     '''Add new item to inventory'''
     return render_template('item_add.html', inventory={})
 
@@ -24,12 +24,14 @@ def inventory_add():
 def inventory_submit():
     '''Submit new item to inventory'''
     item = {
-        'item_name': request.form.get('item_name'),
-        'description': request.form.get('description')
+        'name': request.form.get('name'),
+        'description': request.form.get('description'),
+        'category': request.form.get('category'),
+        'color': request.form.get('color')
     }
 
     item_id = inventory.insert_one(item).inserted_id
-    return redirect(url_for('inventory_show', item_id=item_id))
+    return redirect(url_for('item_show', item_id=item_id))
 
 @app.route('/inventory/<item_id>')
 def item_show(item_id):
@@ -49,7 +51,9 @@ def item_update(item_id):
     '''Submit an edited item'''
     updated_item = {
         'item_name': request.form.get('item_name'),
-        'description': request.form.get('description')
+        'description': request.form.get('description'),
+        'category': request.form.get('category'),
+        'color': request.form.get('color')
     }
 
     inventory.update_one(

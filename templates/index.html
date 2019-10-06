@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
-<h1>FIRST, POUR THE TEA</h1>
-
 {% block content %}
+
+    <h1>FIRST, POUR THE TEA</h1>
+
+    {% for item in inventory %}
+        {{ item.name }} | 
+        {{ item.color }} <br />
+    {% endfor %}
 
 {% endblock content %}

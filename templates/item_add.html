@@ -1,1 +1,9 @@
 {% extends 'base.html' %}
+
+{% block content %}
+<form method="POST" action="/inventory">
+    {% include 'partials/item_form.html' %}
+    <button type="submit">Add Item</button>
+    <button onClick="window.location.href='/';">Cancel</button>
+</form>
+{% endblock content %}
