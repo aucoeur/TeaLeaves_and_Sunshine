@@ -3,9 +3,13 @@
 {% block content %}
 
 <h1> {{ item.name }}</h1>
-<p> {{ item.description }}</p>
 <p> {{ item.category }}</p>
-<p> {{ item.color }}</p>
+<p> {{ item.ig_id }}</p>
 
+<a href="/inventory/{{ item._id }}/edit">Edit</a>
+<p><form method='POST' action='/inventory/{{ item._id }}/delete'>
+            <input type='hidden' name='_method' value='DELETE'>
+            <button class='btn btn-primary' type='submit'>Delete</button>
+        </form></p>    
 
 {% endblock content %}

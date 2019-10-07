@@ -1,30 +1,20 @@
 <fieldset>
-    <legend>Add New Item to Inventory</legend>
+    <legend> {{ title }}</legend>
 
     <!-- Item Name -->
     <label>Item Name</label>
-    <input type="text" name="name" />
+    <input type="text" name="name" />  
 
-    <!-- Description -->
-    <label>Description</label>
-    <input type="text" name="description" />
+    <!-- Price -->
+    <label>Price</label>
+    <input type="text" name="price" /><br /><br />
 
     <!-- Category -->
     <label>Category</label>
-    <input type="text" name="category" />
+    <input type="text" name="category" />  
 
-    <!-- Color -->
-    <label>Color</label>
-    <select name="color">
-        <!-- {% for color in colors  %}
-            <option value=" {{ color.name }}">{{ color.name }}</option>
-        {% endfor %} -->
-        <option value="Red">Red</option>
-        <option value="Orange">Orange</option>
-        <option value="Yellow">Yellow</option>
-        <option value="Green">Green</option>
-        <option value="Blue">Blue</option>
-        <option value="Purple">Purple</option>
-        <option value="Pink">Pink</option>
-    </select>
+    <!-- Image URL -->
+    <label>Instagram ID</label>
+    <input type="text" name ='ig_id' /><br />
+
 </fieldset>

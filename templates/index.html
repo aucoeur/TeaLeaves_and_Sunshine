@@ -5,8 +5,17 @@
     <h1>FIRST, POUR THE TEA</h1>
 
     {% for item in inventory %}
-        {{ item.name }} | 
-        {{ item.color }} <br />
+        <div>
+            <img src="https://instagram.com/p/{{ item.ig_id }}/media/?size=m"><br />
+            <a href="/inventory/{{ item._id }}">{{ item.name }} </a> | $ {{ item.price }}
+            <form action="/cart" >
+                <input type="number" min="0">
+                <button type="submit">Add to Cart</button>
+            </form>
+            <br /><br />
+        </div>
     {% endfor %}
+
+
 
 {% endblock content %}
