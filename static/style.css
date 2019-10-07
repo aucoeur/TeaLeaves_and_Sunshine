@@ -1,0 +1,7 @@
+input[type=number] {
+    width: 20px;
+} 
+
+div#add_cart {
+    text-align: justify;
+}

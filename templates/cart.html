@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Collecting all the things</h1>
+{{ cart_id._id }}
+
+{% for added_item in cart_id %}
+    {{ added_item._id }}<br />
+    Name: {{ added_item.name }} | $ {{ added_item.price }} | Qty: {{ added_item.quantity }} <br />
+{% endfor %}
+
+{% endblock content %}
