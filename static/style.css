@@ -5,3 +5,7 @@ input[type=number] {
 div#add_cart {
     text-align: justify;
 }
+
+body {
+    background-color: #fff0d5;
+}

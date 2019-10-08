@@ -71,5 +71,23 @@ def item_delete(item_id):
 
     return redirect(url_for('index'))
 
+@app.route('/cart')
+def cart_show():
+    '''Show cart'''  
+    return render_template('cart.html', cart=cart.find())
+
+@app.route('/cart/add', methods=['POST'])
+def cart_submit():
+    '''Submit new item to cart'''
+    item = {
+        '_id': request.form.get('item_id'),
+        'name': request.form.get('name'),
+        "price": request.form.get('price'),
+        'quantity': request.form.get('quantity'),
+    }
+
+    cart_id = cart.insert_one(item).inserted_id
+    return redirect(url_for('cart_show', cart_id=cart_id))
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))

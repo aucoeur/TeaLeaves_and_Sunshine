@@ -7,9 +7,11 @@
 <p> {{ item.ig_id }}</p>
 
 <a href="/inventory/{{ item._id }}/edit">Edit</a>
-<p><form method='POST' action='/inventory/{{ item._id }}/delete'>
-            <input type='hidden' name='_method' value='DELETE'>
-            <button class='btn btn-primary' type='submit'>Delete</button>
-        </form></p>    
+<p>
+    <form method='POST' action='/inventory/{{ item._id }}/delete'>
+        <input type='hidden' name='_method' value='DELETE'>
+        <button class='btn btn-primary' type='submit'>Delete</button>
+    </form>
+</p>    
 
 {% endblock content %}

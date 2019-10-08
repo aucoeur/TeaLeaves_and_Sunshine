@@ -5,20 +5,9 @@
     <h1>FIRST, POUR THE TEA</h1>
 
     {% for item in inventory %}
-        <div>
-            <form action="/cart/add" method="POST">
-                <input type='hidden' value='{{ item._id }}' name='item_id'/>
-                <input type='hidden' value='{{ item.name }}' name='name'/>
-                <input type='hidden' value='{{ item.price }}' name='price'/>
-                <div id="add_cart"></div>
-                    <img src="https://instagram.com/p/{{ item.ig_id }}/media/?size=m"><br />
-                    <a href="/inventory/{{ item._id }}">{{ item.name }} </a> | $ {{ item.price }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="number" min="0" name="quantity" />
-                    <button type="submit">Add to Cart</button>
-                </div>
-            </form>
-            <br /><br />
-        </div>
+        <img src="https://instagram.com/p/{{ item.ig_id }}/media/?size=m"><br />
+        <a href="/inventory/{{ item._id }}">{{ item.name }}</a> | $ {{ item.price }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {% include 'partials/add_to_cart.html' %}
     {% endfor %}
 
 {% endblock content %}
