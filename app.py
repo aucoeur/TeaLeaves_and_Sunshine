@@ -71,35 +71,5 @@ def item_delete(item_id):
 
     return redirect(url_for('index'))
 
-# @app.route('/cart')
-# def cart_show():
-#     return render_template('cart.html', cart=cart.find())
-
-@app.route('/cart/new')
-def cart_new():
-    '''Create a new cart'''
-    
-    return render_template('cart_new.html', added_item={}, title='New Cart')
-
-@app.route('/cart/add', methods=['POST'])
-def cart_add():
-    added_item = {
-        'name': request.form.get('name'),
-        'price': request.form.get('price'),
-        'quantity': request.form.get('quantity'),
-        'item_id': ObjectId(request.form.get('item_id'))
-    }
-
-    cart_id = cart.insert_one(added_item).inserted_id
-        
-    return redirect(url_for('cart_show', cart_id=cart_id))
-
-@app.route('/cart/<cart_id>')
-def cart_show(cart_id):
-    '''Show single cart'''
-    cart_id = cart.find_one({'_id': ObjectId(cart_id)})
-    return render_template('cart.html', cart_id=cart_id)
-
-
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
