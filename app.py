@@ -19,11 +19,11 @@ inventory.insert_many([
     {"name": "Orange", "category": "fresh", "price": 1.54, "image": "static/img/fresh/orange.jpg"},
     {"name": "Avocado", "category": "fresh", "price": 2.24, "image": "static/img/fresh/avocado.jpg"},
     {"name": "Watermelon", "category": "fresh", "price": 5.36, "image": "static/img/fresh/watermelon.jpg"},
-    {"name": "Lobster", "category": "prepped", "price": 25.48, "image": "static/img/fresh/lobster.jpg"},
-    {"name": "Paella", "category": "prepped", "price": 14.56, "image": "static/img/fresh/paella.jpg"},
-    {"name": "Farfalle Alfredo", "category": "prepped", "price": 12.74, "image": "static/img/fresh/pasta.jpg"},
-    {"name": "Pizza", "category": "fresh", "price": 9.96, "image": "static/img/fresh/pizza.jpg"},
-    {"name": "Taco", "category": "fresh", "price": 2.15, "image": "static/img/fresh/avocado.jpg"}
+    {"name": "Lobster", "category": "prepped", "price": 25.48, "image": "static/img/prepped/lobster.jpg"},
+    {"name": "Paella", "category": "prepped", "price": 14.56, "image": "static/img/prepped/paella.jpg"},
+    {"name": "Farfalle Alfredo", "category": "prepped", "price": 12.74, "image": "static/img/prepped/pasta.jpg"},
+    {"name": "Pizza", "category": "fresh", "price": 9.96, "image": "static/img/prepped/pizza.jpg"},
+    {"name": "Taco", "category": "fresh", "price": 2.15, "image": "static/img/prepped/taco.jpg"}
     ])
 
 @app.route('/')

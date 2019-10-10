@@ -1,7 +1,12 @@
 body {
     background-color: #5d636a;
+    color: #88ff00
 }
 
 input[type=number] {
     width: 50px;
+}
+
+a {
+    color: #88ff00;
 }
