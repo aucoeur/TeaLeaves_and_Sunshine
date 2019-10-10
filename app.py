@@ -65,7 +65,7 @@ def inventory_submit():
     item_id = inventory.insert_one(item).inserted_id
     return redirect(url_for('item_show', item_id=item_id))
 
-@app.route('/cart/<item_id>')
+@app.route('/inventory/<item_id>')
 def item_show(item_id):
     '''Show single item'''
     item = inventory.find_one({'_id': ObjectId(item_id)})
@@ -113,7 +113,7 @@ def add_to_cart():
     add_item = cart.insert_one(item).inserted_id
     return redirect(url_for('show_cart', add_item=add_item))
 
-@app.route('/inventory/<item_id>/delete', methods=['POST'])
+@app.route('/cart/<item_id>/delete', methods=['POST'])
 def remove_from_cart(item_id):
     '''Remove item from cart'''
     cart.delete_one({'_id': ObjectId(item_id)})
