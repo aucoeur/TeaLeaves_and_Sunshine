@@ -1,12 +1,16 @@
-body {
-    background-color: #5d636a;
+/* body {
+    background-color: #858788;
     color: #88ff00
-}
+} */
 
 input[type=number] {
     width: 50px;
 }
 
-a {
+/* a {
     color: #88ff00;
 }
+
+.navbar {
+    background-color: #454849;
+} */

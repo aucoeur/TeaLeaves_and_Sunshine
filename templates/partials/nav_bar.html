@@ -1,12 +1,17 @@
-<nav class='navbar navbar-default'>
-    <div class='container-fluid'>
-        <div class='navbar-header'>
-            <a class='navbar-brand' href='/'>
-                Foodstuffs
-            </a>
-        </div>
-        <div class='pull-right'>
-            <a href='/cart' class='btn btn-default navbar-btn'>Cart</a>
-        </div>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">Authenique Foodstuffs</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="/cart">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Cart</button>
+    </form>
+  </div>
 </nav>
