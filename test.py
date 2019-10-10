@@ -30,6 +30,5 @@ class InventoryTests(TestCase):
         result = self.client.get('/')
         self.assertEqual(result.status, '200 OK')
 
-
 if __name__ == '__main__':
     unittest_main()

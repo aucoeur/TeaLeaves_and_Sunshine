@@ -76,18 +76,28 @@ def cart_show():
     '''Show cart'''  
     return render_template('cart.html', cart=cart.find())
 
-@app.route('/cart/add', methods=['POST'])
-def cart_submit():
-    '''Submit new item to cart'''
-    item = {
-        '_id': request.form.get('item_id'),
-        'name': request.form.get('name'),
-        "price": request.form.get('price'),
-        'quantity': request.form.get('quantity'),
-    }
+# @app.route('/cart/add', methods=['POST'])
+# def cart_submit():
+#     '''Submit new item to cart'''
+#     item = {
+#         '_id': request.form.get('item_id'),
+#         'name': request.form.get('name'),
+#         "price": request.form.get('price'),
+#         'quantity': request.form.get('quantity'),
+#     }
+#     cart_item = cart.find_one({'_id': ObjectId(item.id)})
 
-    cart_id = cart.insert_one(item).inserted_id
-    return redirect(url_for('cart_show', cart_id=cart_id))
+#     quant = int(item.quantity)
+
+#     if item._id == cart_item:
+#         cart.update_one(
+#             { '_id': ObjectId(item.id) },
+#             { '$inc': { 'quantity': quant } }
+#             )
+#     else:
+#         cart_id = cart.insert_one(item).inserted_id
+
+#     return redirect(url_for('cart_show', cart_id=cart_item))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))

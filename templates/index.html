@@ -2,12 +2,17 @@
 
 {% block content %}
 
-    <h1>FIRST, POUR THE TEA</h1>
+    <div class = "container">
+        <div class="row">
+            {% for item in inventory %}
+                <div class="col-md-4 col-sm-3">
+                    <img src="/static/img/fresh/{{ item.ig_id}}.jpg" width="200px"><br />
+                    <div class="card-title">
+                    <a href="/inventory/{{ item._id }}">{{ item.name }}</a> | $ {{ item.price }} 
+                    {% include 'partials/add_to_cart.html' %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
-    {% for item in inventory %}
-        <img src="https://instagram.com/p/{{ item.ig_id }}/media/?size=m"><br />
-        <a href="/inventory/{{ item._id }}">{{ item.name }}</a> | $ {{ item.price }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {% include 'partials/add_to_cart.html' %}
-    {% endfor %}
-
-{% endblock content %}
+{% endblock %}

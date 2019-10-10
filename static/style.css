@@ -1,11 +1,7 @@
 input[type=number] {
-    width: 20px;
-} 
-
-div#add_cart {
-    text-align: justify;
+    width: 50px;
 }
 
 body {
-    background-color: #fff0d5;
+    background-color: rgb(126, 112, 87);
 }
