@@ -3,18 +3,18 @@
 
     <!-- Item Name -->
     <label>Item Name: </label>
-    <input type="text" name="name" />  
+    <input type="text" name="name" value="{{ item.name }}"/>  
 
     <!-- Price -->
     <label>Price: $</label>
-    <input type="text" name="price" /><br /><br />
+    <input type="text" name="price" value="{{ item.price }}"/><br /><br />
 
     <!-- Category -->
     <label>Category: </label>
-    <input type="text" name="category" />  
+    <input type="text" name="category" value="{{ item.category }}" />  
 
     <!-- Image URL -->
     <label>Link to Image: </label>
-    <input type="text" name ='image' /><br />
+    <input type="text" name ='image' value="{{ item.image }}"/><br />
 
 </fieldset>
