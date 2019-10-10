@@ -1,7 +1,7 @@
-input[type=number] {
-    width: 50px;
+body {
+    background-color: #5d636a;
 }
 
-body {
-    background-color: rgb(126, 112, 87);
+input[type=number] {
+    width: 50px;
 }

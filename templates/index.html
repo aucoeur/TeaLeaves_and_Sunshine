@@ -6,7 +6,7 @@
         <div class="row">
             {% for item in inventory %}
                 <div class="col-md-4 col-sm-3">
-                    <img src="/{{ item.image }}" width="200px"><br />
+                    <img src="/{{ item.image }}" width="300px"><br />
                     <div class="card-title">
                     <a href="/inventory/{{ item._id }}">{{ item.name }}</a> | $ {{ item.price }} 
                     {% include 'partials/add_to_cart.html' %}

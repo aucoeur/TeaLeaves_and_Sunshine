@@ -9,7 +9,7 @@ host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/papernoms')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 inventory = db.inventory
-cart = db.cart
+carts = db.carts
 
 inventory.drop()
 inventory.insert_many([
@@ -19,6 +19,11 @@ inventory.insert_many([
     {"name": "Orange", "category": "fresh", "price": 1.54, "image": "static/img/fresh/orange.jpg"},
     {"name": "Avocado", "category": "fresh", "price": 2.24, "image": "static/img/fresh/avocado.jpg"},
     {"name": "Watermelon", "category": "fresh", "price": 5.36, "image": "static/img/fresh/watermelon.jpg"},
+    {"name": "Lobster", "category": "prepped", "price": 25.48, "image": "static/img/fresh/lobster.jpg"},
+    {"name": "Paella", "category": "prepped", "price": 14.56, "image": "static/img/fresh/paella.jpg"},
+    {"name": "Farfalle Alfredo", "category": "prepped", "price": 12.74, "image": "static/img/fresh/pasta.jpg"},
+    {"name": "Pizza", "category": "fresh", "price": 9.96, "image": "static/img/fresh/pizza.jpg"},
+    {"name": "Taco", "category": "fresh", "price": 2.15, "image": "static/img/fresh/avocado.jpg"}
     ])
 
 @app.route('/')
@@ -28,7 +33,7 @@ def index():
 
 @app.route('/inventory/add')
 def item_add():
-    '''Add new item to inventory'''
+    '''Add new item to cart'''
     title = "Add Item"
     return render_template('item_add.html', title=title, inventory={})
 
@@ -82,7 +87,14 @@ def item_delete(item_id):
 @app.route('/cart')
 def cart_show():
     '''Show cart'''  
-    return render_template('cart.html', cart=cart.find())
+    cart = carts.find()
+
+    cart_items = list(cart.find({}))
+    total_price = 0
+    for i in range(len(cart_items)):
+        total_price += cart_items[i]["price"]*cart_items[i]["quantity"]
+
+    return render_template('cart.html', cart=cart, total_price=total_price)
 
 # @app.route('/cart/add', methods=['POST'])
 # def cart_submit():
