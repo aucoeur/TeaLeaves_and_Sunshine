@@ -1,0 +1,29 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+    <div class = "container">
+        <div class="row">
+            {% for item in inventory %}
+                <div class="col-md-4 col-sm-3">
+                    <img src="/{{ item.image }}" width="350px" height="350px"><br />
+                    {{ item.name }}
+                    $ {{ item.price }} 
+                    Category: {{ item.category }}
+                    <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/inventory/{{ item._id }}">View Item</a>
+                        <a class="dropdown-item" href="/inventory/{{ item._id }}/edit">Edit Item</a>
+                        <a class="dropdown-item" href="/inventory/{{ item._id }}/delete">Delete Item</a>
+                    </div>
+                    </div>
+<br />
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -32,7 +32,13 @@ inventory.insert_many([
 def show_inventory():
     """Show all inventory."""
     # This will display all inventory by looping through the database
-    return render_template('index.html', inventory=inventory.find(),)
+    return render_template('index.html', inventory=inventory.find())
+
+@app.route('/admin')
+def show_admin():
+    """Show inventory on admin."""
+    # This will display all inventory by looping through the database
+    return render_template('admin.html', inventory=inventory.find())
 
 @app.route('/cart')
 def show_cart():

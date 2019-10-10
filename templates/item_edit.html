@@ -1,7 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'admin_base.html' %}
 
 {% block content %}
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/admin" class='btn btn-light'>Back</a><br /><br />
 <form method="POST" action="/inventory/{{item._id}}">
     {% include 'partials/item_form.html' %}
     
