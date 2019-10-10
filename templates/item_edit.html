@@ -2,6 +2,7 @@
 
 {% block content %}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/admin" class='btn btn-light'>Back</a><br /><br />
+{% include 'partials/display_item.html' %}
 <form method="POST" action="/inventory/{{item._id}}">
     {% include 'partials/item_form.html' %}
     

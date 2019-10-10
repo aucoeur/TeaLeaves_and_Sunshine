@@ -2,12 +2,7 @@
 
 {% block content %}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/admin" class='btn btn-light'>Back</a><br /><br />
- <img src="/{{ item.image }}" width="350px" height="350px"><br />
-                    <h3>{{ item.name }}</h3> <br />
-                    <h4>$ {{ item.price }} </h4><br />
-                    <h4>Category: {{ item.category }}</h4><br />
-                    <h5>Image Link: {{ item.image }}</h5><br />
-
+{% include 'partials/display_item.html' %}
 
 <p>
     <a href="/inventory/{{ item._id }}/edit" class='btn btn-primary'>Edit</a>

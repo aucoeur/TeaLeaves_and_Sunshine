@@ -90,7 +90,8 @@ def item_update(item_id):
     updated_item = {
         'name': request.form.get('name'),
         'price': request.form.get('price'),
-        'category': request.form.get('category')
+        'category': request.form.get('category'),
+        'image': request.form.get('image')
     }
 
     inventory.update_one(
@@ -112,7 +113,7 @@ def add_to_cart():
     item = {
         'name': request.form.get('name'),
         "price": request.form.get('price'),
-        'category': request.form.get('category'),
+        'category': request.form.get('category')
         # 'quantity': request.form.get('quantity')
     }
 
