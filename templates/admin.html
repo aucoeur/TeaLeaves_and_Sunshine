@@ -17,10 +17,13 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/inventory/{{ item._id }}">View Item</a>
                         <a class="dropdown-item" href="/inventory/{{ item._id }}/edit">Edit Item</a>
-                        <a class="dropdown-item" href="/inventory/{{ item._id }}/delete">Delete Item</a>
+                        <form method='POST' action='/inventory/{{ item._id }}/delete'>
+                            <input type='hidden' name='_method' value='DELETE'>
+                            <button class='dropdown-item' type='submit'>Delete Item</button>
+                            </form>
                     </div>
                     </div>
-<br />
+<br />    
                 </div>
             {% endfor %}
         </div>

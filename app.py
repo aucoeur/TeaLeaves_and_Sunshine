@@ -65,7 +65,7 @@ def inventory_submit():
         'name': request.form.get('name'),
         "price": request.form.get('price'),
         'category': request.form.get('category'),
-        'quantity': request.form.get('quantity')
+        'image': request.form.get('image')
     }
 
     item_id = inventory.insert_one(item).inserted_id
@@ -105,7 +105,7 @@ def item_delete(item_id):
     '''Delete item'''
     inventory.delete_one({'_id': ObjectId(item_id)})
 
-    return redirect(url_for('index'))
+    return redirect(url_for('show_admin'))
 
 @app.route('/cart', methods=['POST'])
 def add_to_cart():
