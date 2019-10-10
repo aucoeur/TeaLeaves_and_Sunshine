@@ -11,6 +11,16 @@ db = client.get_default_database()
 inventory = db.inventory
 cart = db.cart
 
+inventory.drop()
+inventory.insert_many([
+    {"name": "Persimmon", "category": "fresh", "price": 3.24, "image": "static/img/fresh/persimmon.jpg"},
+    {"name": "Artichoke", "category": "fresh", "price": 4.24, "image": "static/img/fresh/artichoke.jpg"},
+    {"name": "Dragonfruit", "category": "fresh", "price": 7.26, "image": "static/img/fresh/dragonfruit.jpg"},
+    {"name": "Orange", "category": "fresh", "price": 1.54, "image": "static/img/fresh/orange.jpg"},
+    {"name": "Avocado", "category": "fresh", "price": 2.24, "image": "static/img/fresh/avocado.jpg"},
+    {"name": "Watermelon", "category": "fresh", "price": 5.36, "image": "static/img/fresh/watermelon.jpg"},
+    ])
+
 @app.route('/')
 def index():
     '''Show full inventory'''
@@ -28,8 +38,7 @@ def inventory_submit():
     item = {
         'name': request.form.get('name'),
         "price": request.form.get('price'),
-        'category': request.form.get('category'),
-        'ig_id': request.form.get('ig_id')
+        'category': request.form.get('category')
     }
 
     item_id = inventory.insert_one(item).inserted_id
@@ -54,8 +63,7 @@ def item_update(item_id):
     updated_item = {
         'name': request.form.get('name'),
         'price': request.form.get('price'),
-        'category': request.form.get('category'),
-        'ig_id': request.form.get('ig_id')
+        'category': request.form.get('category')
     }
 
     inventory.update_one(
