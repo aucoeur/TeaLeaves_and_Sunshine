@@ -24,8 +24,8 @@ inventory.insert_many([
     {"name": "Lobster", "category": "prepped", "price": 25.48, "image": "static/img/prepped/lobster.jpg", "quantity": 100},
     {"name": "Paella", "category": "prepped", "price": 14.56, "image": "static/img/prepped/paella.jpg", "quantity": 100},
     {"name": "Farfalle Alfredo", "category": "prepped", "price": 12.74, "image": "static/img/prepped/pasta.jpg", "quantity": 100},
-    {"name": "Pizza", "category": "fresh", "price": 9.96, "image": "static/img/prepped/pizza.jpg", "quantity": 100},
-    {"name": "Taco", "category": "fresh", "price": 2.15, "image": "static/img/prepped/taco.jpg", "quantity": 100}
+    {"name": "Pizza", "category": "prepped", "price": 9.96, "image": "static/img/prepped/pizza.jpg", "quantity": 100},
+    {"name": "Taco", "category": "prepped", "price": 2.15, "image": "static/img/prepped/taco.jpg", "quantity": 100}
     ])
 
 @app.route('/')
