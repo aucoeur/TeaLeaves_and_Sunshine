@@ -9,27 +9,42 @@ host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/papernoms')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 inventory = db.inventory
-carts = db.carts
+cart = db.cart
 
 inventory.drop()
+cart.drop()
+
 inventory.insert_many([
-    {"name": "Persimmon", "category": "fresh", "price": 3.24, "image": "static/img/fresh/persimmon.jpg"},
-    {"name": "Artichoke", "category": "fresh", "price": 4.24, "image": "static/img/fresh/artichoke.jpg"},
-    {"name": "Dragonfruit", "category": "fresh", "price": 7.26, "image": "static/img/fresh/dragonfruit.jpg"},
-    {"name": "Orange", "category": "fresh", "price": 1.54, "image": "static/img/fresh/orange.jpg"},
-    {"name": "Avocado", "category": "fresh", "price": 2.24, "image": "static/img/fresh/avocado.jpg"},
-    {"name": "Watermelon", "category": "fresh", "price": 5.36, "image": "static/img/fresh/watermelon.jpg"},
-    {"name": "Lobster", "category": "prepped", "price": 25.48, "image": "static/img/prepped/lobster.jpg"},
-    {"name": "Paella", "category": "prepped", "price": 14.56, "image": "static/img/prepped/paella.jpg"},
-    {"name": "Farfalle Alfredo", "category": "prepped", "price": 12.74, "image": "static/img/prepped/pasta.jpg"},
-    {"name": "Pizza", "category": "fresh", "price": 9.96, "image": "static/img/prepped/pizza.jpg"},
-    {"name": "Taco", "category": "fresh", "price": 2.15, "image": "static/img/prepped/taco.jpg"}
+    {"name": "Persimmon", "category": "fresh", "price": 3.24, "image": "static/img/fresh/persimmon.jpg", "quantity": 100},
+    {"name": "Artichoke", "category": "fresh", "price": 4.24, "image": "static/img/fresh/artichoke.jpg", "quantity": 100},
+    {"name": "Dragonfruit", "category": "fresh", "price": 7.26, "image": "static/img/fresh/dragonfruit.jpg", "quantity": 100},
+    {"name": "Orange", "category": "fresh", "price": 1.54, "image": "static/img/fresh/orange.jpg", "quantity": 100},
+    {"name": "Avocado", "category": "fresh", "price": 2.24, "image": "static/img/fresh/avocado.jpg", "quantity": 100},
+    {"name": "Watermelon", "category": "fresh", "price": 5.36, "image": "static/img/fresh/watermelon.jpg", "quantity": 100},
+    {"name": "Lobster", "category": "prepped", "price": 25.48, "image": "static/img/prepped/lobster.jpg", "quantity": 100},
+    {"name": "Paella", "category": "prepped", "price": 14.56, "image": "static/img/prepped/paella.jpg", "quantity": 100},
+    {"name": "Farfalle Alfredo", "category": "prepped", "price": 12.74, "image": "static/img/prepped/pasta.jpg", "quantity": 100},
+    {"name": "Pizza", "category": "fresh", "price": 9.96, "image": "static/img/prepped/pizza.jpg", "quantity": 100},
+    {"name": "Taco", "category": "fresh", "price": 2.15, "image": "static/img/prepped/taco.jpg", "quantity": 100}
     ])
 
 @app.route('/')
-def index():
-    '''Show full inventory'''
-    return render_template('index.html', inventory=inventory.find())
+def show_inventory():
+    """Show all inventory."""
+    # This will display all inventory by looping through the database
+    return render_template('index.html', inventory=inventory.find(),)
+
+@app.route('/cart')
+def show_cart():
+    """Show cart."""
+    carts = cart.find()
+    # This will display all inventory by looping through the database
+    # total_price = list(cart.find({}))
+    # total = 0
+    # for i in range(len(total_price)):
+    #     total += total_price[i]["price"]*total_price[i]["quantity"]
+
+    return render_template('cart.html', cart=carts)
 
 @app.route('/inventory/add')
 def item_add():
@@ -43,13 +58,14 @@ def inventory_submit():
     item = {
         'name': request.form.get('name'),
         "price": request.form.get('price'),
-        'category': request.form.get('category')
+        'category': request.form.get('category'),
+        'quantity': request.form.get('quantity')
     }
 
     item_id = inventory.insert_one(item).inserted_id
     return redirect(url_for('item_show', item_id=item_id))
 
-@app.route('/inventory/<item_id>')
+@app.route('/cart/<item_id>')
 def item_show(item_id):
     '''Show single item'''
     item = inventory.find_one({'_id': ObjectId(item_id)})
@@ -84,40 +100,25 @@ def item_delete(item_id):
 
     return redirect(url_for('index'))
 
-@app.route('/cart')
-def cart_show():
-    '''Show cart'''  
-    cart = carts.find()
+@app.route('/cart', methods=['POST'])
+def add_to_cart():
+    '''Submit new item to cart'''
+    item = {
+        'name': request.form.get('name'),
+        "price": request.form.get('price'),
+        'category': request.form.get('category'),
+        # 'quantity': request.form.get('quantity')
+    }
 
-    cart_items = list(cart.find({}))
-    total_price = 0
-    for i in range(len(cart_items)):
-        total_price += cart_items[i]["price"]*cart_items[i]["quantity"]
+    add_item = cart.insert_one(item).inserted_id
+    return redirect(url_for('show_cart', add_item=add_item))
 
-    return render_template('cart.html', cart=cart, total_price=total_price)
+@app.route('/inventory/<item_id>/delete', methods=['POST'])
+def remove_from_cart(item_id):
+    '''Remove item from cart'''
+    cart.delete_one({'_id': ObjectId(item_id)})
 
-# @app.route('/cart/add', methods=['POST'])
-# def cart_submit():
-#     '''Submit new item to cart'''
-#     item = {
-#         '_id': request.form.get('item_id'),
-#         'name': request.form.get('name'),
-#         "price": request.form.get('price'),
-#         'quantity': request.form.get('quantity'),
-#     }
-#     cart_item = cart.find_one({'_id': ObjectId(item.id)})
-
-#     quant = int(item.quantity)
-
-#     if item._id == cart_item:
-#         cart.update_one(
-#             { '_id': ObjectId(item.id) },
-#             { '$inc': { 'quantity': quant } }
-#             )
-#     else:
-#         cart_id = cart.insert_one(item).inserted_id
-
-#     return redirect(url_for('cart_show', cart_id=cart_item))
+    return redirect(url_for('show_cart'))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))

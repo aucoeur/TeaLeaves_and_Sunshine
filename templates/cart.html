@@ -4,13 +4,26 @@
 
 <h1>Collecting all the things</h1>
 
-{% for item in cart  %}
-    <div>
-        {{ item.item_id }}
-        {{ item.name }}
-        {{ item.price }}
-        {{ item.quantity }}
-    </div>
-{% endfor %}
+<table class="table table-striped">
+    <thead>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Remove</th>
+    </thead>
+    <tbody>
+        {% for item in cart  %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <!-- {{ item.quantity }} -->
+                <td><form method='POST' action='/cart/{{ item._id }}/delete'>
+                    <input type='hidden' name='_method' value='DELETE'>
+                    <button class='btn btn-secondary btn-sm' type='submit'>Delete</button>
+                </form></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </thead>
+</table>
 
 {% endblock content %}

@@ -1,7 +1,6 @@
-/* body {
-    background-color: #858788;
-    color: #88ff00
-} */
+body {
+    background-color: hsl(83, 52%, 68%);
+}
 
 input[type=number] {
     width: 50px;
